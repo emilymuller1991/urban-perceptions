@@ -4,7 +4,6 @@
 |London Roads|Shape file of road network|https://www.ordnancesurvey.co.uk/business-government/products/open-map-roads|Any road network clipped to that same extent as administrative boundary|2019|city_roads/gla_streets.shp|
 |API keys|api_keys are collected from the Google Cloud Platform and enumerated line by line in a file titled api_keys_original.csv. Another copy is made called api_keys.csv (see example below)|https://console.cloud.google.com/| File needs to be made using Google Cloude Platform user credentials| 2019| api_keys/api_keys.csv and api_keys/api_keys_original.csv|
 
-
 ,API Key \
 1,API_key1_ \
 2,API_key2_ \
