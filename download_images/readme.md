@@ -1,15 +1,15 @@
 # How To Download Google Street View Images
 
-This folder contains all the necessary scripts and steps to take to download Google Street View Images (GSV) using the Google API. The process can be broken down into the following stages:
-* 1) Download city shape file.
-* 2) Download roads shape file.
-* 3) Create grid points from shape file.
-* 4) Get GSV metadata.
-* 5) Sample points from roads.
-* 6) Add azimuths to road vertices.
-* 7) Merge panoids to azimuths.
-* 8) Merge road points to panoids+azimuths.
-* 9) Download images.
+This folder contains all the necessary scripts and steps to take to download Street View Images (GSV) using the Google API. The process can be broken down into the following stages:
+1) Download city shape file.
+2) Download roads shape file.
+3) Create grid points from shape file.
+4) Get street view metadata and unique panoramic ids (panoid)
+5) Sample points from roads.
+6) Add azimuths to road vertices.
+7) Merge panoids to azimuths.
+8) Merge road points to panoids + azimuths.
+9) Download images.
 
 ## Sources
 Both sources are listed in sources/sources.md.
