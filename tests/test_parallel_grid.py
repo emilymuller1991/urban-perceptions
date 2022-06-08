@@ -5,9 +5,13 @@ from pathlib import Path
 def test_parallel_grid(bash, root_dir):
     with bash(envvars={"ROOT": str(root_dir)}) as s:
         s.run_script(Path(root_dir, "tests", "parallel_grid.sh"))
-        file = os.listdir(Path(root_dir, "outputs/metadata/parallel/"))[0]
+        file = os.listdir(Path(root_dir, "download_images/outputs/metadata/parallel/"))[
+            0
+        ]
 
-        with open(Path(root_dir, "outputs/metadata/parallel/", file)) as f:
+        with open(
+            Path(root_dir, "download_images/outputs/metadata/parallel/", file)
+        ) as f:
             data = f.read().splitlines()
             assert len(data) >= 3
 

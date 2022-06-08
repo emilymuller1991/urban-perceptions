@@ -1,0 +1,2 @@
+mkdir $ROOT/download_images/outputs/metadata/years
+python $ROOT/download_images/functions/parallel_output.py test_city_20m $ROOT/download_images/outputs/metadata/parallel/ $ROOT/download_images/outputs/metadata/
