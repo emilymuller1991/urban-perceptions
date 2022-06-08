@@ -1,3 +1,4 @@
+mkdir $ROOT/download_images/outputs/
 mkdir $ROOT/download_images/outputs/metadata/
 mkdir $ROOT/download_images/outputs/metadata/parallel/
 
