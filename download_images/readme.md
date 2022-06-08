@@ -103,7 +103,7 @@ The first argument is the city_20m name given tofiles. The second argument is th
 
 ## Sample points from roads (step 5)
 
-This function will sample 20m distance points along all roads in the city. The function uses the pyQGIS module and requires [qchainage plugin](https://github.com/mach0/qchainage) from QGIS.
+get_road_points.py will sample 20m distance points along all roads in the city_street.shp file and output a .shp file containing sampled points. The function uses the pyQGIS module and requires [qchainage plugin](https://github.com/mach0/qchainage) from QGIS.
 
 ```
 python3 functions/get_road_points.py source/city_roads/city_streets.shp outputs/roads/city_road_points_20m.shp
@@ -113,7 +113,7 @@ The first argument inputs road shape file location and the second argument passe
 
 ## Add Azimuth to Road Vertices (step 6)
 
-One step in data cleaning is to get the azimuth angle of the road to north bearing. This will then serve as a rotation of camera input when we download the images. This will be necessary since inputting standard 90 degrees is often offset and does not give a perpindicular angle to the road.
+One step in data cleaning is to get the azimuth angle of the road to north bearing. This will then serve as a rotation of camera input when we download the images. This will be necessary since inputting standard 90 degrees is often offset and does not give a perpindicular angle to the road. The azimuth.py function uses the pyQGIS module and requires [Azimuth plugin](https://github.com/lcoandrade/AzimuthDistanceCalculator/blob/master/azimuthsAndDistances/azimuthsAndDistances.py) from QGIS.
 
 1) Import city_roads shape file into QGIS
 2) Vector > Geometry > Extract Vertices
@@ -122,13 +122,16 @@ One step in data cleaning is to get the azimuth angle of the road to north beari
 3) Vector > Geometry > Add Geometry Attributes
     *input output from previous step.
     *output: Computes geometric properties of the features in a vector layer and includes them in the output layer.
-4) Export layer > .as.csv
+4) Export layer > as .shp
     *outputs/roads/city_road_vertices_geom.csv
 
 In the final step we will call the function azimuth.py to get azimuth angles from vertices in shape file and merge back to our exported layer.
 
-d) run python3 azimuth.py source/city_roads/city_streets.shp outputs/roads/city_road_vertices_geom.shp outputs/roads/
-the first argument is the location of the streets shape file, the second argument is the location of out last output and third argument is save location of our new azimuth file.
+```
+python3 azimuth.py source/city_roads/city_streets.shp** outputs/roads/city_road_vertices_geom.csv outputs/roads/
+```
+
+The first argument is the location of the streets shape file, the second argument is the location of our QGIS output and third argument is save location of our new azimuth file. **city_streets.shp file needs to be single parts.
 
 ## Merge panoids to Azimuth
 
