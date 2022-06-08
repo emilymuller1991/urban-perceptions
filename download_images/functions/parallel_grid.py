@@ -26,6 +26,7 @@
 """
 import fileinput
 import time
+from pathlib import Path
 from typing import Dict
 
 import numpy as np
@@ -40,7 +41,9 @@ gps = 0
 start_time = time.time()
 
 # GET API KEY one by one
-api_key = utils.get_api("source/api_keys/api_keys.csv")
+api_key = utils.get_api(
+    Path(Path(__file__).parent.parent, "source/api_keys/api_keys.csv")
+)
 
 # Run Programme in parallel with API Key
 for line in fileinput.input():

@@ -24,7 +24,6 @@ def dont_convert_line(line):
     # get co-ordinates
     x = np.float64(line.split(",")[0])
     y = np.float64(line.split(",")[1])
-    # x, y = convert_lonlat(x, y)
     return x, y
 
 
@@ -99,7 +98,7 @@ def get_panoids(x, y, all_gps, all_pano, api_key):
                 # otherwise send request for year and month
                 try:
                     # get owner and google
-                    results = pano_image_metadata(pano["panoid"])
+                    results = pano_image_metadata(pano["panoid"], api_key)
                     owner, status = google_status(results)
                     if owner == "Google" and status == "OK":
                         # get year and month
