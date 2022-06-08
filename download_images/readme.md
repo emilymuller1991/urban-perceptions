@@ -17,6 +17,7 @@ This folder contains all the necessary scripts and steps to take to download Str
 
 * QGIS
 * gnu parallel
+* Python==3.6.9
 
 ## Sources (steps 0-2)
 
@@ -49,12 +50,17 @@ The purpose of this step is to sample the shape file at gridded intervals to cre
     *output: download_images/outputs/points/city_20m.csv
 
 ```
-outputs
-└───points
-│   └───city_20m.csv
-└───metadata
-│   └───parallel
-│   └───years
+download_images
+|   ...
+|
+└───outputs
+    └───points
+    │   └───city_20m.csv
+    └───metadata
+    │   └───parallel
+    │   └───years
+    └───functions
+    ...
 ```
 
 ## Get GSV metadata (step 4)
@@ -72,15 +78,17 @@ cat outputs/points/city_20m.csv | parallel --delay 1.5 --joblog /tmp/log --progr
 ```
 
 outputs/city_20m.csv is stdin.
-parallel calls gnu parallel
---delay 1.5 creates a 1.5 second delay in sending each parallel chunk to be processed. This is used to feed in each API key.
---joblog prints log to '/tmp/log' and tells the time (important! copy and paste into city folder after execution!)
---progress prints job progress to terminal
---block 1M splits stdin into 1M size chunks (make sure there are enough API keys for each block or make blocks bigger)
---files prints location
---tmdir path to save location of output files
---python3 parallel_grid.py calls the function to be executed.
-!NB for dev, removes --files -tmpdir... and replace with --ungroup and retrieve output to terminal.
+
+* parallel calls gnu parallel
+* --delay 1.5 creates a 1.5 second delay in sending each parallel chunk to be processed. This is used to feed in each API key.
+* --joblog prints log to '/tmp/log' and tells the time (important! copy and paste into city folder after execution!)
+* --progress prints job progress to terminal
+* --block 1M splits stdin into 1M size chunks (make sure there are enough API keys for each block or make blocks bigger)
+* --files prints location
+* --tmdir path to save location of output files
+* --python3 parallel_grid.py calls the function to be executed.
+
+!NB for dev, remove --files -tmpdir... and replace with --ungroup and retrieve output to terminal.
 
 ### Part 2
 
@@ -93,12 +101,15 @@ python3 functions/parallel_output.py city_20m outputs/metadata/parallel/ /output
 
 The first argument is the city_20m name given tofiles. The second argument is the path to parallel metadata output and the third argument is path to save aggregated metadata.
 
-## Sample points from roads
+## Sample points from roads (step 5)
 
-This function will sample 20m distance points along all roads in the city. The function uses the pyQGIS module and requires
+This function will sample 20m distance points along all roads in the city. The function uses the pyQGIS module and requires [qchainage plugin](https://github.com/mach0/qchainage) from QGIS.
 
-5) run python3 get_road_points.py source/coty_roads/city_streets.shp outputs/roads/city_road_points_20m.shp
-The first argument inputs road shape file location and the second argument passes save file and location.
+```
+python3 functions/get_road_points.py source/city_roads/city_streets.shp outputs/roads/city_road_points_20m.shp
+```
+
+The first argument inputs road shape file location and the second argument passes save file and location. There are no tests for this function since the qgis plugin is not a python module itself therefore must be imported from QGIS plugins path (amend as necessary in file). Python version must mast python version for QGIS.
 
 ## Add Azimuth to Road Vertices
 
