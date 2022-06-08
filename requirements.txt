@@ -1,3 +1,2 @@
 pandas
 git+https://github.com/robolyst/streetview@100d77b
-git+https://github.com/mach0/qchainage@069d896
