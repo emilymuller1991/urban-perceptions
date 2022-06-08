@@ -111,14 +111,19 @@ python3 functions/get_road_points.py source/city_roads/city_streets.shp outputs/
 
 The first argument inputs road shape file location and the second argument passes save file and location. There are no tests for this function since the qgis plugin is not a python module itself therefore must be imported from QGIS plugins path (amend as necessary in file). Python version must mast python version for QGIS.
 
-## Add Azimuth to Road Vertices
+## Add Azimuth to Road Vertices (step 6)
 
 One step in data cleaning is to get the azimuth angle of the road to north bearing. This will then serve as a rotation of camera input when we download the images. This will be necessary since inputting standard 90 degrees is often offset and does not give a perpindicular angle to the road.
 
-6) Import city_roads shape file into QGIS
-a) Vector > Geometry > Extract Vertices: input city_road.shp
-b) Vector > Geometry > Add Geometry Attributes: input output from previous step
-c) Export layer > outputs/roads/city_road_vertices_geom.csv
+1) Import city_roads shape file into QGIS
+2) Vector > Geometry > Extract Vertices
+    *input: city_road.shp.
+    *output: Takes a vector layer and generates a point layer with points representing the vertices in the input geometries.
+3) Vector > Geometry > Add Geometry Attributes
+    *input output from previous step.
+    *output: Computes geometric properties of the features in a vector layer and includes them in the output layer.
+4) Export layer > .as.csv
+    *outputs/roads/city_road_vertices_geom.csv
 
 In the final step we will call the function azimuth.py to get azimuth angles from vertices in shape file and merge back to our exported layer.
 
