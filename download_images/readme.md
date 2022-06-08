@@ -1,6 +1,7 @@
 # How To Download Google Street View Images
 
 This folder contains all the necessary scripts and steps to take to download Street View Images (GSV) using the Google API. The process can be broken down into the following stages:
+
 0) Obtain Google street view API keys.
 1) Download city shape file.
 2) Download roads shape file.
@@ -14,8 +15,8 @@ This folder contains all the necessary scripts and steps to take to download Str
 
 ## Requirements
 
-QGIS
-gnu parallel
+* QGIS
+* gnu parallel
 
 ## Sources (steps 0-2)
 
@@ -67,7 +68,7 @@ This step will make use of GNU parallel to speed up processing time. Feeding as 
 Create a new directory outputs/metadata/parallel. This will store the printed output from the parallel python metadata scrape. Make sure gnu parallel is installed and run:
 
 ```
-* cat outputs/points/city_20m.csv | parallel --delay 1.5 --joblog /tmp/log --progress --pipe --block 3M --files --tmpdir outputs/metadata/parallel python3 functions/parallel_grid.py
+cat outputs/points/city_20m.csv | parallel --delay 1.5 --joblog /tmp/log --progress --pipe --block 3M --files --tmpdir outputs/metadata/parallel python3 functions/parallel_grid.py
 ```
 
 outputs/city_20m.csv is stdin.
