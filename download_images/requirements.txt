@@ -1,2 +1,2 @@
-gnu parallel
+pandas
 streetview

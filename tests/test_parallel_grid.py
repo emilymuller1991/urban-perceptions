@@ -1,6 +1,8 @@
 import os
 from pathlib import Path
 
+import pandas as pd
+
 
 def test_parallel_grid(bash, root_dir):
     with bash(envvars={"ROOT": str(root_dir)}) as s:
@@ -18,5 +20,18 @@ def test_parallel_grid(bash, root_dir):
             data = data[-3:]
             assert "Number of points:" in data[2]
 
-        # assert s.path_exists('/home/blah/newdir')
-        # assert s.file_contents('/home/blah/newdir/test.txt') == 'test text'
+
+def test_parallel_output(bash, root_dir):
+    with bash(envvars={"ROOT": str(root_dir)}) as s:
+        s.run_script(Path(root_dir, "tests", "parallel_output.sh"))
+
+        # check file has summarised output
+        assert s.path_exists(
+            Path(root_dir, "download_images/outputs/metadata/test_city_20m_panoids.csv")
+        )
+
+        # check output is non-zero
+        df = pd.read_csv(
+            Path(root_dir, "download_images/outputs/metadata/test_city_20m_panoids.csv")
+        )
+        assert df.shape[0] != 0
