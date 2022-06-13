@@ -133,7 +133,7 @@ python3 azimuth.py source/city_roads/city_streets.shp** outputs/roads/city_road_
 
 The first argument is the location of the streets shape file, the second argument is the location of our QGIS output and third argument is save location of our new azimuth file. **city_streets.shp file needs to be single parts.
 
-## Merge panoids to Azimuth
+## Merge panoids to Azimuth (step 7)
 
 The final steps utilises psql to merge panoid metadata to azimuths to serve as input for download. It requires the installation of postgres. Once you have downloaded postgres and created user, create database as follows:
 
@@ -145,7 +145,7 @@ CREATE DATABASE city;
 
 psql -U emily -d london -f /home/emily/phd/0_get_images/functions/panoids_azimuth_merge_census_2021.sql.
 
-## Merge road points to panoids + azimuths
+## Merge road points to panoids + azimuths (step 8)
 
 The next step is to ensure one area is not over sampled, and furthermore, have an approximation of GSV road coverage.
 
@@ -157,7 +157,7 @@ run psql -U emily -d london -f /home/emily/phd/0_get_images/functions/road_panoi
 
 remove duplicate IDs
 
-## Download Images
+## Download Images (step 9)
 
 Now we can download the images using the final output from the previous step, python and gnu parallel. Remember to copy back the original api_keys_original.csv to api_keys.csv.
 We will first convert the .csv to plain text as follows:
