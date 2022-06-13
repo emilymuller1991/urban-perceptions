@@ -111,6 +111,8 @@ python3 functions/get_road_points.py source/city_roads/city_streets.shp outputs/
 
 The first argument inputs road shape file location and the second argument passes save file and location. There are no tests for this function since the qgis plugin is not a python module itself therefore must be imported from QGIS plugins path (amend as necessary in file). Python version must mast python version for QGIS.
 
+Open this shape file in QGIS and export as .csv for step 8.
+
 ## Add Azimuth to Road Vertices (step 6)
 
 One step in data cleaning is to get the azimuth angle of the road to north bearing. This will then serve as a rotation of camera input when we download the images. This will be necessary since inputting standard 90 degrees is often offset and does not give a perpindicular angle to the road. The azimuth.py function uses the pyQGIS module and requires [Azimuth plugin](https://github.com/lcoandrade/AzimuthDistanceCalculator/blob/master/azimuthsAndDistances/azimuthsAndDistances.py) from QGIS.
@@ -135,25 +137,26 @@ The first argument is the location of the streets shape file, the second argumen
 
 ## Merge panoids to Azimuth (step 7)
 
-The final steps utilises psql to merge panoid metadata to azimuths to serve as input for download. It requires the installation of postgres. Once you have downloaded postgres and created user, create database as follows:
+The final steps utilise psql to merge panoid metadata to azimuths to serve as input for download. It requires the installation of postgres. Once you have downloaded postgres and created user, create database as follows:
 
+```
 sudo su - postgres
 psql
 CREATE DATABASE city;
+```
 
-7) run: psql -U user -d city -f /home/emily/phd/0_get_images/functions/panoids_azimuth_merge.sql.
+```psql -U user -d city -f functions/panoids_azimuth_merge.sql
+```
 
-psql -U emily -d london -f /home/emily/phd/0_get_images/functions/panoids_azimuth_merge_census_2021.sql.
+Change path to root_dir in lines 35 and 39.
 
 ## Merge road points to panoids + azimuths (step 8)
 
-The next step is to ensure one area is not over sampled, and furthermore, have an approximation of GSV road coverage.
+The next step is to sample panoids by the 20m road intervals. This ensures one area is not over sampled, and furthermore, have an approximation of GSV road coverage.
 
-8a) run psql -U user -d city -f /home/emily/phd/0_get_images/functions/roads_panoids_merge.sql
-
-run psql -U emily -d london -f /home/emily/phd/0_get_images/functions/road_panoids_merge_apr_2021.sql
-
-* NEED TO INCLUDE HERE ADDING IDX.
+```
+psql -U user -d city -f functions/roads_panoids_merge.sql
+```
 
 remove duplicate IDs
 
