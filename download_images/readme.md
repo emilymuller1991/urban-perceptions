@@ -147,7 +147,8 @@ psql
 CREATE DATABASE city;
 ```
 
-```psql -U user -d city -f functions/panoids_azimuth_merge.sql
+```
+psql -U user -d city -f functions/panoids_azimuth_merge.sql
 ```
 
 Change path to root_dir in lines 35 and 39.
