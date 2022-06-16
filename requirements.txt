@@ -1,2 +1,3 @@
-pandas
+pandas==1.1.5
+requests==2.27.1
 git+https://github.com/robolyst/streetview@100d77b
