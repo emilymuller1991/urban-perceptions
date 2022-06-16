@@ -18,6 +18,8 @@ This folder contains all the necessary scripts and steps to take to download Str
 * QGIS
 * gnu parallel
 * Python==3.6.9
+* Postgres
+* psql
 
 ## Sources (steps 0-2)
 
@@ -158,18 +160,25 @@ The next step is to sample panoids by the 20m road intervals. This ensures one a
 psql -U user -d city -f functions/roads_panoids_merge.sql
 ```
 
-remove duplicate IDs
+remove duplicate IDs by specifying path in function/remove_duplicate_ids and run
+
+```
+python3 functions/remove_duplicate_ids.py
+```
 
 ## Download Images (step 9)
 
 Now we can download the images using the final output from the previous step, python and gnu parallel. Remember to copy back the original api_keys_original.csv to api_keys.csv.
-We will first convert the .csv to plain text as follows:
+We will first convert the sampled panoids to plain text as follows:
 
-9a) run: split -l 40000000 -d greater_london_2015_panoids_to_download.csv ../to_download/london2015
-from london2015 remove the header manually.
+```
+split -l 40000000 -d city_road_sample_panoids_unique.csv to_download/city
+```
 
-b) run: cat outputs/psql/london20m | parallel --delay 1.5 --joblog /tmp/log --pipe --block 2M --ungroup python3 functions/get_images.py
+from to_download/city remove the header manually. We are now ready to download the images. In get_images.py append the save path to suit your own local or remote drive. Ensure that there is enough space on your drive (each image is around 600kB) and run
 
-cat outputs/to_download/2018/201800 | parallel --delay 1.5 --joblog /tmp/log --pipe --block 2M --ungroup python3 functions/get_images.py
+```
+cat outputs/psql/to_download/city | parallel --delay 1.5 --joblog /tmp/log --pipe --block 2M --ungroup python3 functions/get_images.py
+```
 
-This function will download 2 angles per panoid, facing either side of the street. Make sure that 2MB remains below the 25K images per month quota. This can take days depending on how many images you have sent to the server and it is likely that errors will occur.
+This function will download 2 angles per panoid, facing either side of the street. When blocking files for input, 2MB should ensure that each API key will download 25K images.
