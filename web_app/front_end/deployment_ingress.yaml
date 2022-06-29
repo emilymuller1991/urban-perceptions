@@ -1,0 +1,12 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: echo-ingress
+spec:
+  rules:
+  - host: pulselondon.co.uk
+    http:
+      paths:
+      - backend:
+          serviceName: front-end
+          servicePort: 80

@@ -1,0 +1,58 @@
+# apiVersion: v1
+# kind: Namespace
+# metadata:
+#   name: back-end
+        
+# ---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: back-end
+  # namespace: back-end
+  labels:
+    backend: flaskapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      backend: flaskapi
+  template:
+    metadata:
+      name: api-pods
+      # namespace: back-end
+      labels:
+        backend: flaskapi
+    spec:
+      containers:
+      - name: back-end
+        image: [username/BACK_END_CONTAINER]
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
+        env:
+          - name: db_host
+            value: "[POSTGRES_ENDPOINT_IP]"
+          - name: db_port
+            value: "5432"
+          - name: db_root_password
+            value: "[POSTGRES_USER_PASSWORD]"
+          - name: app_host
+            value: "0.0.0.0"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: back-end-svc
+  # labels:
+  #   backend: flaskapi
+spec:
+  type: LoadBalancer
+  selector:
+    backend: flaskapi
+  ports:
+  - port: 5000
+    targetPort: 5000
+    protocol: TCP
