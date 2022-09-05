@@ -24,14 +24,14 @@ For more detailed instructions follow [this blog](https://medium.com/@emilymulle
 
 [Install postgres](https://www.postgresql.org/download/).
 
-Create DB 'example' as user postgres:
+Create DB `example` as user `postgres`:
 
 ```
 psql postgres
 postgres=# CREATE DATABASE example;
 ```
 
-Dump example data:
+From web_app/sql/ dump ready-made data, `ratings` and `images`, into the postgres database `example`:
 
 ```
 web-app/sql$ psql -U postgres example < ratings
@@ -64,7 +64,7 @@ web-app/back_end$ python app.py
 
 [Install node.js](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
 
-Set environmental variables in new file web-app/front_end/.env:
+Set environmental variables in the new file web-app/front_end/.env:
 
 ```
 REACT_APP_BACK_END_HOST ='localhost'
@@ -72,7 +72,7 @@ REACT_APP_BACK_END_PORT = '5000'
 REACT_APP_API_KEY = 'API_KEY_from_GOOGLE_STREET_VIEW_API'
 ```
 
-Get api key from [Google Console](https://console.cloud.google.com).
+Using an api key from [Google Console](https://console.cloud.google.com).
 
 run:
 
@@ -94,6 +94,7 @@ In this section we will go through the steps needed to deploy your application u
 
 - Moving database to Droplet
 - Dockerise front-end and back-end
+- Deployment using Kubernetes
 
 ### Requirements II
 
@@ -119,7 +120,7 @@ postgres=# CREATE DATABASE example;
 \q
 ```
 
-We'll now copy the local files to the remote Droplet using [sftp](https://www.digitalocean.com/community/tutorials/how-to-use-sftp-to-securely-transfer-files-with-a-remote-server).
+We'll now copy the local file, `into_droplet`, to the remote Droplet using [sftp](https://www.digitalocean.com/community/tutorials/how-to-use-sftp-to-securely-transfer-files-with-a-remote-server).
 
 ```
 urban_perceptions/web_app/sql$ sftp user@IP.address
@@ -127,7 +128,7 @@ sftp> put into_droplet
 sftp? Ctrl + D
 ```
 
-If you ls in the directory, you will see the file images has copied over to your Digital Ocean Droplet. ssh back into your droplet and pg_dump the images file:
+If you ls in the directory, you will see the file `into_droplet` has copied over to your Digital Ocean Droplet. ssh back into your droplet and pg_dump the into_droplet file into your example database:
 
 ```
 ssh user@IP.address
@@ -182,7 +183,7 @@ Once you have your DigitalOcean Kubernetes cluster and kubectl command line tool
 sudo kubectl apply -f sql/db.yaml
 ```
 
-where PRIVATE_IP_DROPLET is configured to your digital ocean droplet. Once this is configured, run:
+where PRIVATE_IP_DROPLET in the db.yaml file is configured to your digital ocean droplet private IP address. Once this is configured, run:
 
 ```
 sudo kubectl describe services --namespace postgres
@@ -206,7 +207,7 @@ Then, add the postgres endpoint IP to the postgres config file:
 vim /etc/postgresql/13/main/pg_hba.conf
 ```
 
-adding under IPV4 addressed the following:
+adding under IPV4 addresses the following:
 
 ```
 host    all             all             [POSTGRES_ENDPOINT_IP]/24        md5
