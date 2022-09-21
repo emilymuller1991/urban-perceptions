@@ -173,6 +173,7 @@ Once this is complete run the image:
 docker run -it --network="host" --env db_host='localhost' --env db_port=5432 --env db_root_password='[POSTGRES_PASSWORD]' back-end:latest /bin/bash
 ```
 
+This will require you to update your local postgres settings so [listen to on all addresses](https://stackoverflow.com/questions/31249112/allow-docker-container-to-connect-to-a-local-host-postgres-database).
 Continue to push the docker image to DockerHub as with front-end.
 
 ### Kubernetes
@@ -212,6 +213,8 @@ adding under IPV4 addresses the following:
 ```
 host    all             all             [POSTGRES_ENDPOINT_IP]/24        md5
 ```
+
+If there are any issues with the password, then these can be amended by changing md5 to trust.
 
 #### Deploying back-end
 
