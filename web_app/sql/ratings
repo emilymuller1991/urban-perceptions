@@ -1,0 +1,51 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 11.12 (Ubuntu 11.12-1.pgdg18.04+1)
+-- Dumped by pg_dump version 11.12 (Ubuntu 11.12-1.pgdg18.04+1)
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: perceptions; Type: TABLE; Schema: users; Owner: emily
+--
+
+CREATE TABLE users.perceptions (
+    img_1 character varying(60),
+    img_2 character varying(60),
+    perception character varying(60),
+    choice character varying(60),
+    user_id character varying(100),
+    "time" character varying(100)
+);
+
+
+ALTER TABLE users.perceptions OWNER TO emily;
+
+--
+-- Data for Name: perceptions; Type: TABLE DATA; Schema: users; Owner: emily
+--
+
+COPY users.perceptions (img_1, img_2, perception, choice, user_id, "time") FROM stdin;
+171616_d	289560_d	walkability	289560_d	d3ffb223-ff91-4506-82db-7788e76871b9	07/07/2021, 12:51:09 PM
+\.
+
+
+--
+-- PostgreSQL database dump complete
+--
+

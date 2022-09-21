@@ -1,0 +1,12 @@
+deep_learn/
+web_app/back_end/venv/
+web_app/front_end/node_modules/
+web_app/front_end/.env
+web_app/front_end/dev.properties
+web_app/front_end/package-lock.json
+web_app/front_end/package.json
+download_images/outputs/
+download_images/source/city_admin/
+download_images/source/city_roads/
+download_images/source/api_keys/api_keys_original.csv
+download_images/source/api_keys/api_keys_2021.csv
