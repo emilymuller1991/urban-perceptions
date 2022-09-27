@@ -1,3 +1,14 @@
-pandas==1.1.5
+# download_images
+pandas==1.0.3
 requests==2.27.1
 git+https://github.com/robolyst/streetview@100d77b
+# deep_cnn
+torch==1.9.1
+torchvision==0.10.1
+torchinfo==1.5.4
+torchaudio==0.9.1
+pandas==1.0.3
+matplotlib==3.1.2
+tqdm==4.62.3
+wandb==0.12.21
+

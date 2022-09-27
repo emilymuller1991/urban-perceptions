@@ -6,7 +6,7 @@ import pandas as pd
 
 def test_parallel_grid(bash, root_dir):
     with bash(envvars={"ROOT": str(root_dir)}) as s:
-        s.run_script(Path(root_dir, "tests", "parallel_grid.sh"))
+        s.run_script(Path(root_dir, "tests", "tests1", "parallel_grid.sh"))
         file = os.listdir(Path(root_dir, "download_images/outputs/metadata/parallel/"))[
             0
         ]
@@ -23,7 +23,7 @@ def test_parallel_grid(bash, root_dir):
 
 def test_parallel_output(bash, root_dir):
     with bash(envvars={"ROOT": str(root_dir)}) as s:
-        s.run_script(Path(root_dir, "tests", "parallel_output.sh"))
+        s.run_script(Path(root_dir, "tests", "tests1", "parallel_output.sh"))
 
         # check file has summarised output
         assert s.path_exists(

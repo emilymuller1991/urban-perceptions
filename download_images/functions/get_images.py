@@ -3,7 +3,7 @@ import time
 from io import BytesIO
 from pathlib import Path
 
-import requests
+import requests  # type: ignore
 import utils
 from PIL import Image
 

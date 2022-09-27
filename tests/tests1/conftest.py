@@ -5,4 +5,4 @@ import pytest
 
 @pytest.fixture
 def root_dir():
-    return Path(__file__).parent.parent
+    return Path(__file__).parent.parent.parent
