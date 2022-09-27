@@ -14,7 +14,7 @@ def test_train_model(root_dir, test_data, caplog):
             "--data_dir=" + str(test_data) + "/",
             "--epochs=1",
             "--batch_size=1",
-            "--run_name=places",
+            "--run_name=test",
         ]
     )
 

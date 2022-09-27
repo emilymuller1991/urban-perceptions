@@ -7,7 +7,6 @@ import wandb
 from tqdm import tqdm
 
 from .logger import logger
-from .utils import accuracy
 
 """
 Contains functions for training and testing a PyTorch model.
@@ -54,10 +53,10 @@ def train_step(
                 output = model.forward(train_x)
 
                 # 2. Calculate/accumulate loss and calculate precision
-                loss = loss_fn(output, y)
+                loss = loss_fn(output.float(), y.float())
                 running_loss += loss.detach().item()
 
-                prec1, prec5 = accuracy(output.data, y, topk=(1, 5))
+                # prec1, prec5 = accuracy(output.data, y, topk=(1, 5))
 
                 # 3. Optimzer zero grad
                 optimizer.zero_grad(set_to_none=False)
@@ -75,9 +74,9 @@ def train_step(
 
         # Adjust metrics to get average loss per batch
         avg_train_loss = running_loss / (len(train_dataloader))
-        return avg_train_loss, (prec1.detach().item(), prec5.detach().item())
+        return avg_train_loss, None
     else:
-        return np.nan, np.nan, np.nan
+        return np.nan, np.nan
 
 
 def test_step(
@@ -114,16 +113,16 @@ def test_step(
                 output = model.forward(test_x)
 
                 # 2. Calculate/accumulate loss and calculate accuracy
-                loss = loss_fn(output, y)
+                loss = loss_fn(output.float(), y.float())
                 running_loss += loss.detach().item()
 
-                prec1, prec5 = accuracy(output.data, y, topk=(1, 5))
+                # prec1, prec5 = accuracy(output.data, y, topk=(1, 5))
 
             # Adjust metrics to get average loss and accuracy per batch
             avg_test_loss = running_loss / (len(test_dataloader))
-            return avg_test_loss, (prec1.detach().item(), prec5.detach().item())
+            return avg_test_loss, None
         else:
-            return np.nan, np.nan, np.nan
+            return np.nan, np.nan
 
 
 def train(
@@ -173,10 +172,10 @@ def train(
     results: Dict[str, list] = {}
     results["train_loss"] = []
     results["val_loss"] = []
-    results["train_precision@1"] = []
-    results["val_precision@1"] = []
-    results["train_precision@5"] = []
-    results["val_precision@5"] = []
+    # results["train_precision@1"] = []
+    # results["val_precision@1"] = []
+    # results["train_precision@5"] = []
+    # results["val_precision@5"] = []
 
     # Loop through training and testing steps for a number of epochs
     for epoch in range(epochs):
@@ -205,20 +204,20 @@ def train(
         # Update results dictionary
         results["train_loss"].append(train_loss)
         results["val_loss"].append(val_loss)
-        results["train_precision@1"].append(train_precision[0])
-        results["val_precision@1"].append(val_precision[0])
-        results["train_precision@5"].append(train_precision[1])
-        results["val_precision@5"].append(val_precision[1])
+        # results["train_precision@1"].append(train_precision[0])
+        # results["val_precision@1"].append(val_precision[0])
+        # results["train_precision@5"].append(train_precision[1])
+        # results["val_precision@5"].append(val_precision[1])
 
         if wb is True:
             wandb.log(
                 {
                     "loss_train": train_loss,
-                    "precision_train@1": train_precision[0],
-                    "precision_train@5": train_precision[1],
+                    # "precision_train@1": train_precision[0],
+                    # "precision_train@5": train_precision[1],
                     "loss_val": val_loss,
-                    "precision_val@1": val_precision[0],
-                    "precision_val@5": train_precision[1],
+                    # "precision_val@1": val_precision[0],
+                    # "precision_val@5": train_precision[1],
                 }
             )
 

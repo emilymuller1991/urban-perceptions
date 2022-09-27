@@ -6,8 +6,8 @@ import torch
 import torch.nn as nn
 import wandb
 
-from . import train
-from .dataset_generator import dataloader
+from . import datautils, train
+from .dataset_generator import dataloader_pp
 from .logger import logger
 from .model_builder import MyCNN
 from .utils import detect_device, output_plots
@@ -40,15 +40,35 @@ def main(opt):
         "pin_memory": False,
         "drop_last": False,
     }
-    train_dataloader, val_dataloader, N = dataloader(
-        opt.data_dir, opt.root_dir, opt.pre, "train", params
+    # train_dataloader, val_dataloader, N = dataloader(
+    #     opt.data_dir, opt.root_dir, opt.pre, "train", params
+    # )
+    # test_dataloader, _, _ = dataloader(
+    #     opt.data_dir, opt.root_dir, opt.pre, "val", params, val_split=0
+    # )
+
+    # load image metadata
+    df_train, df_val, df_test = datautils.pp_process_input(
+        opt.study_id,
+        opt.root_dir,
+        opt.data_dir,
+        oversample=opt.oversample,
+        verbose=True,
     )
-    test_dataloader, _, _ = dataloader(
-        opt.data_dir, opt.root_dir, opt.pre, "val", params, val_split=0
+
+    # create dataloaders
+    train_dataloader = dataloader_pp(
+        df_train, opt.root_dir, opt.data_dir, opt.pre, "train", params
+    )
+    val_dataloader = dataloader_pp(
+        df_val, opt.root_dir, opt.data_dir, opt.pre, "val", params
+    )
+    test_dataloader = dataloader_pp(
+        df_test, opt.root_dir, opt.data_dir, opt.pre, "test", params
     )
 
     # initialise model
-    model = MyCNN(model_base=opt.model, n_classes=N)
+    model = MyCNN(model_base=opt.model)
     model.to(device)
     logger.info("Model loaded with %s parameters" % str(model.count_params()))
 
@@ -60,7 +80,8 @@ def main(opt):
         return opt.lr * 1 / (1.0 + (opt.lr / opt.epochs) * epoch)
 
     scheduler = torch.optim.lr_scheduler.LambdaLR(optimizer, lambda_decay)
-    loss_fn = nn.CrossEntropyLoss()
+    # loss_fn = nn.CrossEntropyLoss()
+    loss_fn = nn.MSELoss()
 
     # Start the timer
     start_time = timer()
@@ -98,21 +119,3 @@ def main(opt):
             train_val_loss["train_loss"][-1], train_val_loss["val_loss"][-1], test_loss
         )
     )
-
-
-# PLOTS
-# plot training loss
-# plot validation loss
-# plot test prediction histogram
-
-
-# y[i] = np.squeeze(toutputs.cpu().detach().numpy())
-# y_true[i] = np.squeeze(tlabels.numpy())
-# y = y[y != 0]
-# y_true = y_true[y_true != 0]
-# avg_testloss = running_tloss/(i+1)
-# prediction_hist(y.flatten(), y_true.flatten(), opt.model + '
-# _epochs_' + str(opt.epochs) + '_lr_' + str(opt.lr)  + str(opt.oversample)
-#  + str(opt.study_id), opt.prefix )
-# logger.info('LOSS train {} valid {} test {}'
-# .format(avg_tloss, avg_vloss, avg_testloss))

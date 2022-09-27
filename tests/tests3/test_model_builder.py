@@ -15,7 +15,7 @@ def test_model_builder():
     # TEST SUITE
     # =================================
     # Check the length of the returned object
-    assert out.shape[1] == 365
+    assert out.shape[1] == 1
 
 
 def test_model_builder2():
@@ -31,4 +31,4 @@ def test_model_builder2():
     # TEST SUITE
     # =================================
     # Check the length of the returned object
-    assert out.shape[1] == 365
+    assert out.shape[1] == 1

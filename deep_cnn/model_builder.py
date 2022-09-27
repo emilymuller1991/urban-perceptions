@@ -14,14 +14,20 @@ class MyCNN(nn.Module):
     """
 
     def __init__(
-        self, model_base="resnet101", input_shape=(3, 224, 224), n_classes=365
+        self, model_base="resnet101", input_shape=(3, 224, 224), n_classes=None
     ):
         super().__init__()
         self.pretrained = initialise_model(model_base)  # load pre-trained model
         dim = get_final_dimension(self.pretrained, input_shape)
+        # self.my_new_layers = nn.Sequential(
+        #     nn.Flatten(), nn.Linear(dim, n_classes)  # add fully connected layer
+        # )
         self.my_new_layers = nn.Sequential(
-            nn.Flatten(), nn.Linear(dim, n_classes)  # add fully connected layer
-        )
+            nn.Flatten(),
+            nn.Linear(dim, 512),  # add fully connected layer
+            nn.Linear(512, 256),  # add fully connected layer
+            nn.Linear(256, 1),
+        )  # final output is 1 for regression task
 
     def forward(self, x):
         x = x.float()
@@ -40,7 +46,7 @@ def initialise_model(model_base):
     """Function to initiliase pre-trained model and remove final layers"""
     method_to_call = getattr(models, model_base)
     model = method_to_call(pretrained=True)  # load pre-trained model
-    model = nn.Sequential(*(list(model.children())[:-1]))  # remove final layers
+    model = nn.Sequential(*(list(model.children())[:-2]))  # remove final layers
     return model
 
 

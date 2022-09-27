@@ -5,7 +5,7 @@ import pytest
 
 @pytest.fixture
 def test_data():
-    return "tests/tests3/places_test_input"
+    return "tests/tests3/test_input"
 
 
 @pytest.fixture

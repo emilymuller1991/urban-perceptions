@@ -21,6 +21,15 @@ def argument_parser(args=None):
         "--pre", default="resnet", type=str, help="pre-processing for image input"
     )
     parser.add_argument(
+        "--study_id",
+        default="50a68a51fdc9f05596000002",
+        type=str,
+        help="perceptions_1_to_6",
+    )
+    parser.add_argument(
+        "--oversample", default=True, type=bool, help="whether to oversample"
+    )
+    parser.add_argument(
         "--root_dir",
         default=Path(__file__).parent.parent,
         help="path to recode-perceptions",
@@ -67,17 +76,25 @@ def output_plots(results, root_dir, run_name):
     df.to_csv(save_path)
 
 
+# def accuracy(output, target, topk=(1,)):
+#     """Computes the precision@k for the specified values of k"""
+#     maxk = max(topk)
+#     batch_size = target.size(0)
+
+#     _, pred = output.topk(maxk, 1, True, True)
+#     pred = pred.t()
+#     correct = pred.eq(target.view(1, -1).expand_as(pred))
+
+#     res = []
+#     for k in topk:
+#         correct_k = correct[:k].reshape(-1).float().sum(0)
+#         res.append(correct_k.mul_(100.0 / batch_size))
+#     return res
+
+
 def accuracy(output, target, topk=(1,)):
-    """Computes the precision@k for the specified values of k"""
-    maxk = max(topk)
-    batch_size = target.size(0)
-
-    _, pred = output.topk(maxk, 1, True, True)
-    pred = pred.t()
-    correct = pred.eq(target.view(1, -1).expand_as(pred))
-
+    """Computes MAE and MSE"""
     res = []
-    for k in topk:
-        correct_k = correct[:k].reshape(-1).float().sum(0)
-        res.append(correct_k.mul_(100.0 / batch_size))
+    res.append(None)
+    res.append(None)
     return res
