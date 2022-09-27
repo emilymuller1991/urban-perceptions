@@ -11,4 +11,7 @@ pandas==1.0.3
 matplotlib==3.1.2
 tqdm==4.62.3
 wandb==0.12.21
-
+# web-app
+Flask==1.1.2
+psycopg2-binary < 3.0.0
+flask_cors
