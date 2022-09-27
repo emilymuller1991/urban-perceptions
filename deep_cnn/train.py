@@ -228,7 +228,8 @@ def train(
             "state_dict": model.state_dict(),
             "optimizer": optimizer.state_dict(),
         }
-        if not Path(save_model).parent.is_dir():
+        if not Path(save_model).parent.parent.is_dir():
+            Path(save_model).parent.parent.mkdir()
             Path(save_model).parent.mkdir()
         torch.save(state, save_model)
 
