@@ -1,0 +1,57 @@
+site_name: Urban Perceptions
+repo_url: https://github.com/emilymuller1991/urban-perceptions
+edit_uri: tree/main/docs/
+
+theme:
+  name: material
+  custom_dir: docs
+
+  icon:
+    logo: logos/logo_BLACK
+  favicon: assets/iclogo.png
+  font:
+    text: Roboto
+    code: Roboto Mono
+  palette:
+    - scheme: default
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to dark mode
+    - scheme: slate
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to light mode
+
+  # SPA behaviour
+  features:
+    - navigation.instant
+    - navigation.top
+    - toc.follow
+    - content.code.annotate
+
+# Add here all the plugins you want to use.
+# Don't forget to add them in requirements.txt as well.
+plugins:
+  - tags
+  - search
+  - include-markdown # https://github.com/mondeja/mkdocs-include-markdown-plugin
+
+# Set settings for markdown extensions
+markdown_extensions:
+  - meta
+  - mdx_math:
+      enable_dollar_delimiter: True
+  - pymdownx.highlight:
+      anchor_linenums: false
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+
+# Render math in mkdocs
+extra_javascript:
+  - https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML
+
+# Have to set this to false to be able to display images with paths in both
+# Jupyter notebooks and Mkdocs. Otherwise, Mkdocs-jupyter will load images from
+# /images/... instead of images/....
+use_directory_urls: false
