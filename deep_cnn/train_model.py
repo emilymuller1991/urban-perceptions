@@ -53,7 +53,7 @@ def main(opt):
         opt.root_dir,
         opt.data_dir,
         oversample=opt.oversample,
-        verbose=True,
+        verbose=False,
     )
 
     # create dataloaders
