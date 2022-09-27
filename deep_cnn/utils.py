@@ -60,6 +60,10 @@ def output_plots(results, root_dir, run_name):
         / "results"
         / (run_name + f"{datetime.now().strftime('%Y%m%d_%H-%M-%S')}.csv")
     )
+    if not Path(save_path).parent.parent.is_dir():
+        Path(save_path).parent.parent.mkdir()
+    if not Path(save_path).parent.is_dir():
+        Path(save_path).parent.mkdir()
     df.to_csv(save_path)
 
 
