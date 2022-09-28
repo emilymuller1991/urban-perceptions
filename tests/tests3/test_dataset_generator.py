@@ -16,11 +16,12 @@ def test_dataset_generator(root_dir, test_data, study, params):
 
     for x, y in train_dataloader:
         print(y)
+        y = y.numpy()
         a = x.numpy()
         # =================================
         # TEST SUITE
         # =================================
         # Check train and test images are of size 1
         assert ((-3 <= a) & (a <= 3)).all()
-        assert ((0 <= y) & (y <= 4)).all()
+        assert ((0 <= y) & (y <= 10)).all()
     assert train_dataloader.__len__() != 0
