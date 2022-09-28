@@ -2,7 +2,7 @@
 
 # <p align="center">Mapping city-wide perceptions of neighbourhood quality using street-view images: a methodological toolkit</p>
 
-![example workflow](https://github.com/github/docs/actions/workflows/docs.yml/badge.svg)
+![example workflow](https://github.com/.github//workflows/docs.yml/badge.svg)
 
 ## Description
 
