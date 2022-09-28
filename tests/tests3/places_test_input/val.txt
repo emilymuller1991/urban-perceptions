@@ -1,5 +1,0 @@
-/a/alley/00003248.jpg 7
-/a/auto_factory/00002148.jpg 28
-/b/beach/00000013.jpg 48
-/b/boathouse/00000004.jpg 59
-/b/butte/00000297.jpg 73

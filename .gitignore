@@ -11,6 +11,7 @@ download_images/source/city_admin/
 download_images/source/city_roads/
 download_images/source/api_keys/api_keys_original.csv
 download_images/source/api_keys/api_keys_2021.csv
+input/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

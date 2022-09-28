@@ -24,7 +24,7 @@ def argument_parser(args=None):
         "--study_id",
         default="50a68a51fdc9f05596000002",
         type=str,
-        help="perceptions_1_to_6",
+        help="perceptions from place pulse study",
     )
     parser.add_argument(
         "--oversample", default=True, type=bool, help="whether to oversample"

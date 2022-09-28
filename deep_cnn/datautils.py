@@ -57,7 +57,7 @@ def get_image_id(f):
 def create_image_df(root_dir, data_dir):
     """DataFrame of image names (as found in metadata.csv)
     and location of image file"""
-    path = Path(root_dir, data_dir)
+    path = Path(root_dir, data_dir, "images")
     # files = os.listdir(path)
     files = [s for s in os.listdir(path) if s.endswith(".JPG")]
     img_id = get_image_id(files)
@@ -65,9 +65,7 @@ def create_image_df(root_dir, data_dir):
     return df_img
 
 
-def add_qscore(
-    root_dir, data_dir, images_df, perception_study, metadata="meta/qscores.tsv"
-):
+def add_qscore(root_dir, data_dir, images_df, perception_study, metadata="qscores.tsv"):
     """Read in metadata to add qscore label to image dataframe"""
     meta = pd.read_csv(Path(root_dir, data_dir, metadata), sep="\t")
     perception_meta = meta[meta["study_id"] == perception_study]
