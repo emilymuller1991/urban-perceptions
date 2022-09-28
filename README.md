@@ -18,6 +18,8 @@ We provide all the necessary components to launch your own urban perceptions sur
 | [kubectl](https://kubernetes.io/docs/tasks/tools/)         | ==v1.20.2              |
 | [wandb](https://wandb.ai/site)                              |              |
 
+Python and npm modules are included in requirement.txt files.
+
 ## How to Use this Repository
 
 This repository has 3 core components:
