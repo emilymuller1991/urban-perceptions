@@ -35,7 +35,6 @@ plugins:
   - tags
   - search
   - include-markdown # https://github.com/mondeja/mkdocs-include-markdown-plugin
-  - jemoji
 
 # Set settings for markdown extensions
 markdown_extensions:
