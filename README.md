@@ -6,11 +6,7 @@
 
 We provide all the necessary components to launch your own urban perceptions survey using street view images. This work is part of Emily Muller's PhD funded by the MRC Center for Environment & Health. 
 
-## Requirements
-
-### Academic
-
-### System
+## System Requirements
 
 | Program                                                    | Version                  |
 | ---------------------------------------------------------- | ------------------------ |
