@@ -1,6 +1,6 @@
-# Mapping city-wide perceptions of neighbourhood quality using street-view images: a methodological toolkit
+![collage of street view images](images/sm_lfa_image_clipped.png)
 
-## <p align=center> :camera: :city_sunset: :thought_balloon: :ok_woman: :sparkling_heart: :question: </p>
+# Mapping city-wide perceptions of neighbourhood quality using street-view images: a methodological toolkit
 
 ## Description
 
