@@ -1,6 +1,6 @@
 # Mapping city-wide perceptions of neighbourhood quality using street-view images: a methodological toolkit
 
-## <center>:camera: :city_sunset: :thought_balloon: :ok_woman: :sparkling_heart: :question:</center>
+<center>##:camera: :city_sunset: :thought_balloon: :ok_woman: :sparkling_heart: :question:</center>
 
 ## Description
 
