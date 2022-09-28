@@ -1,5 +1,7 @@
 # Mapping city-wide perceptions of neighbourhood quality using street-view images: a methodological toolkit
 
+:camera: :city_sunset: :thought_balloon: :ok_woman: :sparkling_heart: :question:
+
 ## Description
 
 This toolkit follows the processes required to map city-wide perceptions of neighbourhood quality, including image selections, building a web-app for survey collection and a deep learning model, developed by Emily Muller as part of her PhD.
