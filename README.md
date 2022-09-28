@@ -4,14 +4,14 @@
 
 ## Description
 
-We provide all the necessary components to launch your own urban perceptions survey using street view images. This work is part of Emily Muller's PhD funded by the MRC Center for Environment & Health. 
+We provide all the necessary components to launch your own urban perceptions survey using street view images. This work is part of Emily Muller's PhD funded by the MRC Center for Environment & Health.
 
 ## System Requirements
 
 | Program                                                    | Version                  |
 | ---------------------------------------------------------- | ------------------------ |
 | [Python](https://www.python.org/downloads/)                | >= 3.7                   |
-| [QGIS](https://qgis.org/en/site/)                          | >= 3.14.1-Pi           | 
+| [QGIS](https://qgis.org/en/site/)                          | >= 3.14.1-Pi           |
 | [GNU parallel](https://www.gnu.org/software/parallel/)     |  |
 | [Postgresql](https://www.postgresql.org/)                  | >= 11.17                 |
 | [Node.js](https://nodejs.org/en/)                          | >= 16.13.2                |
