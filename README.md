@@ -2,8 +2,6 @@
 
 # <p align="center">Mapping city-wide perceptions of neighbourhood quality using street-view images: a methodological toolkit</p>
 
-![example workflow](https://github.com/github/actions/workflows/python-app.yml/badge.svg)
-
 ## Description
 
 We provide all the necessary components to launch your own urban perceptions survey using street view images. This work is part of Emily Muller's PhD funded by the MRC Center for Environment & Health.
