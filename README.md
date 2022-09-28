@@ -4,12 +4,6 @@
 
 This toolkit follows the processes required to map city-wide perceptions of neighbourhood quality, including image selections, building a web-app for survey collection and a deep learning model, developed by Emily Muller as part of her PhD.
 
-## Sections
-
-- download_images
-- web_app
-- deep_cnn
-
 ## Requirements
 
 ### Academic
