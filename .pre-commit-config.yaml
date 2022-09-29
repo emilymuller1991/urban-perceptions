@@ -25,4 +25,4 @@ repos:
     rev: "v0.9.0"
     hooks:
       - id: markdownlint
-        args: ["-r", "~MD013"]
+        args: ["-r", "~MD013", "~MD024"]
