@@ -15,8 +15,11 @@ We provide all the necessary components to launch your own urban perceptions sur
 | [GNU parallel](https://www.gnu.org/software/parallel/)     |  |
 | [Postgresql](https://www.postgresql.org/)                  | >= 11.17                 |
 | [Node.js](https://nodejs.org/en/)                          | >= 16.13.2                |
+| [Docker](https://www.docker.com/)         | >= 20.10.18             |
 | [kubectl](https://kubernetes.io/docs/tasks/tools/)         | ==v1.20.2              |
 | [wandb](https://wandb.ai/site)                              |              |
+
+
 
 Python and npm modules are included in requirement.txt files.
 
