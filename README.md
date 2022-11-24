@@ -1,6 +1,6 @@
 ![collage of street view images](docs/images/sm_lfa_image_clipped.png)
 
-# <p align="center">Mapping city-wide perceptions of neighbourhood quality using street-view images: a methodological toolkit</p>
+# <p align="center">City-wide perceptions of neighbourhood quality using street-view images: a methodological toolkit</p>
 
 ## Description
 
